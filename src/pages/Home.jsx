@@ -1,49 +1,261 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import PlanCard from '../components/PlanCard'
 import FeatureCard from '../components/FeatureCard'
 import styles from '../styles/Home.module.css'
 
 const plans = [
-  {title:'High Protein Diet', price:'₹1999 / week', desc:'High protein meals for fitness', features:['Lunch & Dinner','5 days a week','Pause anytime']},
-  {title:'Diabetic Friendly Diet', price:'₹1999 / week', desc:'Low sugar, balanced nutrition', features:['Chef curated','Fresh veggies','RO water']},
-  {title:'Home Cooked Diet', price:'₹999 / week', desc:'Comfort food, homely taste', features:['Veg & Non-Veg','Daily delivery','Hygienic kitchens']}
+  {
+    title: 'High Protein Diet',
+    price: '₹1999',
+    desc: 'Muscle building & fitness focused meals',
+    features: [
+      'High protein daily',
+      'Lunch & Dinner',
+      '5 days a week',
+      'Pause/resume anytime',
+      'Free delivery',
+    ],
+  },
+  {
+    title: 'Diabetic Friendly Diet',
+    price: '₹1999',
+    desc: 'Low sugar, balanced nutrition for health',
+    features: [
+      'Low glycemic index',
+      'Chef curated meals',
+      'Fresh vegetables',
+      'RO water',
+      'Nutritionist approved',
+    ],
+  },
+  {
+    title: 'Home Cooked Diet',
+    price: '₹999',
+    desc: 'Comfort food with authentic homely taste',
+    features: [
+      'Veg & Non-Veg options',
+      'Daily home delivery',
+      'FSSAI certified kitchens',
+      'Fresh ingredients',
+      'Most affordable',
+    ],
+  },
 ]
 
 const features = [
-  {title:'Homely Meals', text:'Cooked with love, tasted like home'},
-  {title:'Healthy', text:'Nutrition focused plans for goals'},
-  {title:'Hygienic', text:'FSSAI certified kitchens and strict standards'},
-  {title:'Convenient', text:'Easy subscriptions, pause anytime'}
+  {
+    title: 'Homely Meals',
+    text: 'Cooked with love and care, tastes like home comfort',
+    icon: '🏠',
+  },
+  {
+    title: 'Healthy & Balanced',
+    text: 'Nutritionist-designed plans for your fitness goals',
+    icon: '💪',
+  },
+  {
+    title: 'Hygienic & Safe',
+    text: 'FSSAI certified kitchens with strict food standards',
+    icon: '✓',
+  },
+  {
+    title: 'Convenient',
+    text: 'Easy subscriptions with pause/resume anytime',
+    icon: '📦',
+  },
+  {
+    title: 'Affordable',
+    text: 'Premium quality meals at unbeatable prices',
+    icon: '💰',
+  },
+  {
+    title: 'Fresh Daily',
+    text: 'Daily delivery of freshly prepared meals',
+    icon: '🚚',
+  },
 ]
 
-export default function Home(){
+export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  }
+
   return (
     <div className={styles.container}>
-      <section className={`${styles.hero} reveal`}>
-        <div>
-          <h1>Homely. Healthy. Delivered.</h1>
-          <p>Subscribe to convenient, nutritious meal plans crafted for your goals.</p>
-          <div className={styles.ctaRow}>
-            <a className="btn primary" href="/plans">View Plans</a>
-            <a className="btn outline" href="/contact">Subscribe Now</a>
-          </div>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Homely. Healthy. Delivered.
+          </motion.h1>
+
+          <motion.p
+            className={styles.heroSubtitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Premium meal plans crafted with love, nutrition-focused and designed for your goals. Fresh, hygienic, and convenient.
+          </motion.p>
+
+          <motion.div
+            className={styles.ctaRow}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Link to="/plans" className="cta-primary">
+              View Plans
+            </Link>
+            <Link to="/contact" className="cta-secondary">
+              Get in Touch
+            </Link>
+          </motion.div>
         </div>
-        <div className={styles.heroImg} aria-hidden>
-          <div className={styles.placeholder}>Meal image</div>
+
+        <motion.div
+          className={styles.heroImage}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=600&fit=crop"
+            alt="Fresh healthy meal"
+            className={styles.mealImage}
+          />
+        </motion.div>
+      </section>
+
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Why Choose MistaEats?</h2>
+          <p>Premium meal plans that prioritize your health and happiness</p>
+        </div>
+
+        <motion.div
+          className={styles.featuresGrid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          {features.map((feature, idx) => (
+            <FeatureCard
+              key={idx}
+              icon={feature.icon}
+              title={feature.title}
+              text={feature.text}
+              delay={idx * 0.1}
+            />
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Plans Preview Section */}
+      <section className={styles.plansSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Our Meal Plans</h2>
+          <p>Choose the plan that fits your lifestyle and goals</p>
+        </div>
+
+        <motion.div
+          className={styles.plansGrid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          {plans.map((plan, idx) => (
+            <PlanCard
+              key={idx}
+              {...plan}
+              features={plan.features}
+              delay={idx * 0.15}
+            />
+          ))}
+        </motion.div>
+
+        <motion.div
+          className={styles.plansFooter}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Link to="/plans" className="cta-primary" style={{ fontSize: '1.1rem' }}>
+            Explore All Plans
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* Trust Section */}
+      <section className={styles.trustSection}>
+        <h2>Trusted by Thousands</h2>
+        <div className={styles.trustGrid}>
+          <motion.div
+            className={styles.trustCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3>5000+</h3>
+            <p>Happy Customers</p>
+          </motion.div>
+          <motion.div
+            className={styles.trustCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h3>100+</h3>
+            <p>Menu Variations</p>
+          </motion.div>
+          <motion.div
+            className={styles.trustCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3>100%</h3>
+            <p>FSSAI Certified</p>
+          </motion.div>
         </div>
       </section>
 
-      <section className={`${styles.features} reveal`}>
-        {features.map((f,i)=> (
-          <FeatureCard key={i} title={f.title} text={f.text} icon={<span>🍲</span>} />
-        ))}
-      </section>
-
-      <section className={`${styles.plans} reveal`}>
-        <h2>Meal Plans — Preview</h2>
-        <div className={styles.planGrid}>
-          {plans.map((p,i)=> <PlanCard key={i} {...p} features={p.features} />)}
-        </div>
+      {/* CTA Section */}
+      <section className={styles.ctaFinal}>
+        <h2>Ready to Start Your Health Journey?</h2>
+        <p>Join thousands who've already transformed their eating habits</p>
+        <Link to="/plans" className="cta-accent">
+          Subscribe Today
+        </Link>
       </section>
     </div>
   )
