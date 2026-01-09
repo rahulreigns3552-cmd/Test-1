@@ -1,66 +1,116 @@
 .feature {
-  background-color: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(33, 90, 65, 0.02));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(245, 191, 31, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   text-align: center;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 8px 32px rgba(33, 90, 65, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(245, 191, 31, 0.1), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.feature:hover::before {
+  opacity: 1;
 }
 
 .feature:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
+  border-color: rgba(245, 191, 31, 0.3);
+  box-shadow: 0 16px 48px rgba(33, 90, 65, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 191, 31, 0.05));
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(33, 90, 65, 0.1), rgba(245, 191, 31, 0.1));
-  border-radius: 12px;
-  margin-bottom: 0.5rem;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, rgba(33, 90, 65, 0.12), rgba(245, 191, 31, 0.08));
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  border: 1px solid rgba(245, 191, 31, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.feature:hover .iconWrapper {
+  background: linear-gradient(135deg, rgba(245, 191, 31, 0.15), rgba(33, 90, 65, 0.08));
+  border-color: rgba(245, 191, 31, 0.4);
+  transform: scale(1.1);
 }
 
 .icon {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover .icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .feature h4 {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--primary);
   margin: 0;
-  margin-top: 0.5rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.feature:hover h4 {
+  color: var(--accent);
 }
 
 .feature p {
   margin: 0;
   color: var(--text-light);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.feature:hover p {
+  color: var(--text-dark);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .feature {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .iconWrapper {
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
   }
 
   .icon {
@@ -69,5 +119,9 @@
 
   .feature h4 {
     font-size: 1.1rem;
+  }
+
+  .feature p {
+    font-size: 0.9rem;
   }
 }

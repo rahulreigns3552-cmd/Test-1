@@ -1,9 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PlanCard from '../components/PlanCard'
 import FeatureCard from '../components/FeatureCard'
 import styles from '../styles/Home.module.css'
+
+const FloatingOrb = ({ delay = 0, color = 'primary' }) => (
+  <motion.div
+    className={styles.floatingOrb}
+    style={{ background: color === 'primary' ? 'rgba(33, 90, 65, 0.1)' : 'rgba(245, 191, 31, 0.08)' }}
+    animate={{
+      y: [0, -30, 0],
+      opacity: [0.3, 0.6, 0.3],
+    }}
+    transition={{
+      duration: 6,
+      delay,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    }}
+  />
+)
 
 const plans = [
   {
