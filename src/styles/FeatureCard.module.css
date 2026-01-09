@@ -1,0 +1,4 @@
+.feature{background:var(--glass);padding:12px;border-radius:10px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.icon{font-size:24px}
+.feature h4{margin:0}
+.feature p{margin:0;color:var(--muted)}

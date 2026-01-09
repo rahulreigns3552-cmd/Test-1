@@ -1,0 +1,8 @@
+<svg width="160" height="40" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mista Eats logo">
+  <rect width="320" height="80" rx="16" fill="#0b0f12" />
+  <g transform="translate(18,12)">
+    <circle cx="24" cy="24" r="20" fill="#ff6b35" />
+    <path d="M16 24c2-6 12-12 18-8 6 4 2 14-6 16-8 2-14-6-12-8z" fill="#fff" opacity="0.9"/>
+    <text x="64" y="32" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Mista Eats</text>
+  </g>
+</svg>

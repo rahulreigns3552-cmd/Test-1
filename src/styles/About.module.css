@@ -1,0 +1,4 @@
+ .container{display:block;gap:12px}
+ .container h1{margin-top:0}
+ .container p{color:var(--muted)}
+ .container ul{color:var(--muted)}
