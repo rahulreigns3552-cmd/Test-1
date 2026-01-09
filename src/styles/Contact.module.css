@@ -2,27 +2,31 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
+  }
+  background: white;
 
 /* Header */
 .header {
-  background: linear-gradient(135deg, rgba(33, 90, 65, 0.05), rgba(245, 191, 31, 0.05));
-  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--primary) 0%, #1a3a2a 100%);
+  color: white;
+  padding: 5rem 2rem;
   text-align: center;
-  border-bottom: 1px solid var(--border);
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: white;
+  margin: 0 0 1.5rem 0;
+  font-weight: 800;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .header p {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  max-width: 600px;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* Content Section */
@@ -45,27 +49,47 @@
 }
 
 .form {
-  background-color: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 191, 31, 0.03));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(245, 191, 31, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(33, 90, 65, 0.08);
+  transition: all 0.3s ease;
+}
+
+.form:hover {
+  border-color: rgba(245, 191, 31, 0.3);
+  box-shadow: 0 12px 48px rgba(33, 90, 65, 0.12);
 }
 
 .form h2 {
-  font-size: 1.75rem;
+  font-size: 1.8rem;
   color: var(--primary);
-  margin-bottom: 1.5rem;
-  margin-top: 0;
+  margin: 0 0 2rem 0;
+  font-weight: 800;
 }
 
 .successMessage {
   background: linear-gradient(135deg, var(--primary), #1a4430);
   color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+  padding: 1.2rem 1.8rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(33, 90, 65, 0.25);
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .formGroup {
@@ -75,21 +99,24 @@
 }
 
 .formGroup label {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .formGroup input,
 .formGroup textarea {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  border: 2px solid rgba(245, 191, 31, 0.15);
+  border-radius: 12px;
   font-family: inherit;
   font-size: 1rem;
-  transition: var(--transition);
-  background-color: white;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(245, 191, 31, 0.02));
+  backdrop-filter: blur(10px);
   color: var(--text-dark);
 }
 
@@ -97,7 +124,9 @@
 .formGroup textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(33, 90, 65, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 191, 31, 0.05));
+  box-shadow: 0 0 0 4px rgba(33, 90, 65, 0.12), inset 0 0 20px rgba(245, 191, 31, 0.05);
+  transform: translateY(-2px);
 }
 
 .formGroup textarea {
